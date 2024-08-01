@@ -46,6 +46,11 @@ export default function Listing() {
 								/>
 								// eslint-disable-next-line no-mixed-spaces-and-tabs
 						  ))}
+					{!loading && allPosts.length === 0 && (
+						<>
+							<p>No content</p>
+						</>
+					)}
 				</div>
 			</div>
 			<div className="w-1/8">

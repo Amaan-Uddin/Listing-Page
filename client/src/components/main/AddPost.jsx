@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 
 import { useForm } from 'react-hook-form'
 import apiServices from '@/services/apiServices'
+import { useState } from 'react'
 
 function AddPost() {
 	const {
@@ -17,6 +18,7 @@ function AddPost() {
 		formState: { errors },
 	} = useForm()
 	const navigate = useNavigate()
+	const [loading, setLoading] = useState(false)
 	async function uploadData(data) {
 		try {
 			const formData = new FormData()
@@ -34,6 +36,8 @@ function AddPost() {
 			} else {
 				setError('server', { type: 'server', message: error.message })
 			}
+		} finally {
+			setLoading(false)
 		}
 	}
 	return (
@@ -88,7 +92,14 @@ function AddPost() {
 					/>
 					{errors.video && <ErrorMessage>{errors.video.message}</ErrorMessage>}
 				</div>
-				<Button type="submit">Post</Button>
+				<Button
+					type="submit"
+					onClick={() => {
+						setLoading(true)
+					}}
+				>
+					{loading ? 'Loading...' : 'Post'}
+				</Button>
 			</form>
 		</div>
 	)
