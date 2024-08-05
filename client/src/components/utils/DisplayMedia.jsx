@@ -16,6 +16,7 @@ function DisplayMedia({ post }) {
 						className="border shadow-md rounded-lg bg-gray-100"
 						loading="lazy"
 						allowFullScreen
+						allow="autoplay"
 					></iframe>
 				</div>
 			</div>
